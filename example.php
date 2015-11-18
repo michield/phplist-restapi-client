@@ -11,7 +11,7 @@
 
 include_once 'phpListRESTApiClient.php';
 
-$apiURL = 'http://phplist-dev.local/lists/admin/?page=call&pi=restapi';
+$apiURL = 'http:/website.com/lists/admin/?page=call&pi=restapi';
 $login = 'admin';
 $password = 'helloworld';
 
