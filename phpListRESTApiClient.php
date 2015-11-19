@@ -237,11 +237,14 @@ class phpListRESTApiClient
     }
 
     /** 
-     * Find a subscriber by Foreign Key.
+     * Get a subscriber by Foreign Key.
+     * 
+     * Note the difference with subscriberFindByEmail which only returns the SubscriberID
+     * Both API calls return the subscriber
      * 
      * @param string $foreignKey Foreign Key to search
      *
-     * @return int $subscriberID if found false if not found
+     * @return subscriber object if found false if not found
      */
     public function subscriberGetByForeignkey($foreignKey)
     {
@@ -251,7 +254,7 @@ class phpListRESTApiClient
 
         $result = $this->callAPI('subscriberGetByForeignkey', $post_params);
         if (!empty($result->data->id)) {
-            return $result->data->id;
+            return $result->data;
         } else {
             return false;
         }
