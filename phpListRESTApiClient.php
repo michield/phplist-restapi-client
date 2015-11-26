@@ -19,6 +19,7 @@
  * - password               : matching password
  * - remoteProcessingSecret : (optional) the secret as defined in your phpList settings
  * 
+ * v 1.01 Nov 26, 2015 added optional secret on instantiation
  * v 1 * Michiel Dethmers, phpList Ltd, November 18, 2015
  *    Initial implementation of basic API calls
  */
@@ -60,11 +61,12 @@ class phpListRESTApiClient
      * @param string $password password for the account
      * @return null
      */
-    public function __construct($url, $loginName, $password)
+    public function __construct($url, $loginName, $password, $secret = '')
     {
         $this->url = $url;
         $this->loginName = $loginName;
         $this->password = $password;
+        $this->remoteProcessingSecret = $secret;
     }
 
     /**
