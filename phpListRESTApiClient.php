@@ -155,6 +155,24 @@ class phpListRESTApiClient
     }
 
     /**
+     * Get all lists.
+     *
+     * @return array All lists
+     */
+    public function listsGet()
+    {
+        // Create minimal params for api call
+        $post_params = array(
+        );
+
+        // Execute the api call
+        $result = $this->callAPI('listsGet', $post_params);
+
+        // Return all list as array
+        return $result->data;
+    }
+
+    /**
      * Find a subscriber by email address.
      * 
      * @param string $emailAddress Email address to search
