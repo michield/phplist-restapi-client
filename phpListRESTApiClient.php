@@ -78,7 +78,7 @@ class phpListRESTApiClient
      *
      * @return string result of the CURL execution
      */
-    private function callApi($command, $post_params, $decode = true)
+    private function callApi($command, $post_params, $decode = true, $newSession = false)
     {
         $post_params['cmd'] = $command;
 
@@ -95,6 +95,7 @@ class phpListRESTApiClient
         curl_setopt($c, CURLOPT_POSTFIELDS,     $post_params);
         curl_setopt($c, CURLOPT_COOKIEFILE,     $this->tmpPath.'/phpList_RESTAPI_cookiejar.txt');
         curl_setopt($c, CURLOPT_COOKIEJAR,      $this->tmpPath.'/phpList_RESTAPI_cookiejar.txt');
+		curl_setopt($c, CURLOPT_COOKIESESSION,	$newSession); // Fix for random failed authentication
         curl_setopt($c, CURLOPT_HTTPHEADER,     array('Connection: Keep-Alive', 'Keep-Alive: 60'));
 
         // Execute the call
@@ -123,7 +124,7 @@ class phpListRESTApiClient
         );
 
         // Execute the login with the credentials as params
-        $result = $this->callApi('login', $post_params);
+        $result = $this->callApi('login', $post_params, true, true);
         return $result->status == 'success';
     }
 
